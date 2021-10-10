@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_10_172149) do
+ActiveRecord::Schema.define(version: 2021_10_10_202857) do
 
   create_table "members", id: false, force: :cascade do |t|
     t.string "id"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 2021_10_10_172149) do
     t.float "votes_against_party_pct"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "image_225x275"
   end
 
 end
