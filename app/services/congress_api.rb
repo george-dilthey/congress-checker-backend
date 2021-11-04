@@ -1,7 +1,6 @@
 class CongressApi
 
     def initialize
-
     end
 
     def get_members(congress, chamber)
@@ -63,4 +62,9 @@ class CongressApi
         end
     end
 
+    def get_member(id)
+        uri = uri = URI.parse("https://api.propublica.org/congress/v1/members/#{id}.json")
+
+        result = HTTParty.get(uri, :headers => { 'content-type': 'application/json', 'X-API-Key': ENV['PROPUBLICA_API_KEY'] })
+    end
 end
