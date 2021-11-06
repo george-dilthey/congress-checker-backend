@@ -10,8 +10,7 @@ class CongressApi
 
         members_arr = result['results'][0]['members']
         members_arr.map do |member|
-            Member.find_or_create_by(id: member["id"]) do |new_member|
-                new_member.id = member["id"]
+            Member.find_or_create_by(member_id: member["id"], congress: congress ) do |new_member|
                 new_member.title = member["title"]
                 new_member.short_title = member["short_title"]
                 new_member.api_uri = member["api_uri"]
@@ -58,6 +57,8 @@ class CongressApi
                 new_member.votes_with_party_pct = member["votes_with_party_pct"]
                 new_member.votes_against_party_pct = member["votes_against_party_pct"]
                 new_member.image_225x275 = "https://theunitedstates.io/images/congress/225x275/#{member["id"]}.jpg"
+                new_member.member_id = member["id"]
+                new_member.congress = congress
             end
         end
     end
