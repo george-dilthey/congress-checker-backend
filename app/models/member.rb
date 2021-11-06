@@ -3,126 +3,67 @@ class Member < ApplicationRecord
     before_save :add_state_name
 
     def add_state_name
-        case state
-        when "AL" 
-            self.state_name = "Alabama"
-        when "AK" 
-            self.state_name = "Alaska"
-        when "AS" 
-            self.state_name = "American Samoa"
-        when "AZ" 
-            self.state_name = "Arizona"
-        when "AR" 
-            self.state_name = "Arkansas"
-        when "CA" 
-            self.state_name = "California"
-        when "CO" 
-            self.state_name = "Colorado"
-        when "CT" 
-            self.state_name = "Connecticut"
-        when "DE" 
-            self.state_name = "Delaware"
-        when "DC" 
-            self.state_name = "District Of Columbia"
-        when "FM" 
-            self.state_name = "Federated States Of Micronesia"
-        when "FL" 
-            self.state_name = "Florida"
-        when "GA" 
-            self.state_name = "Georgia"
-        when "GU" 
-            self.state_name = "Guam"
-        when "HI" 
-            self.state_name = "Hawaii"
-        when "ID" 
-            self.state_name = "Idaho"
-        when "IL" 
-            self.state_name = "Illinois"
-        when "IN" 
-            self.state_name = "Indiana"
-        when "IA" 
-            self.state_name = "Iowa"
-        when "KS" 
-            self.state_name = "Kansas"
-        when "KY" 
-            self.state_name = "Kentucky"
-        when "LA" 
-            self.state_name = "Louisiana"
-        when "ME" 
-            self.state_name = "Maine"
-        when "MH" 
-            self.state_name = "Marshall Islands"
-        when "MD" 
-            self.state_name = "Maryland"
-        when "MA" 
-            self.state_name = "Massachusetts"
-        when "MI" 
-            self.state_name = "Michigan"
-        when "MN" 
-            self.state_name = "Minnesota"
-        when "MS" 
-            self.state_name = "Mississippi"
-        when "MO" 
-            self.state_name = "Missouri"
-        when "MT" 
-            self.state_name = "Montana"
-        when "NE" 
-            self.state_name = "Nebraska"
-        when "NV" 
-            self.state_name = "Nevada"
-        when "NH" 
-            self.state_name = "New Hampshire"
-        when "NJ" 
-            self.state_name = "New Jersey"
-        when "NM" 
-            self.state_name = "New Mexico"
-        when "NY" 
-            self.state_name = "New York"
-        when "NC" 
-            self.state_name = "North Carolina"
-        when "ND" 
-            self.state_name = "North Dakota"
-        when "MP" 
-            self.state_name = "Northern Mariana Islands"
-        when "OH" 
-            self.state_name = "Ohio"
-        when "OK" 
-            self.state_name = "Oklahoma"
-        when "OR" 
-            self.state_name = "Oregon"
-        when "PW" 
-            self.state_name = "Palau"
-        when "PA" 
-            self.state_name = "Pennsylvania"
-        when "PR" 
-            self.state_name = "Puerto Rico"
-        when "RI" 
-            self.state_name = "Rhode Island"
-        when "SC" 
-            self.state_name = "South Carolina"
-        when "SD" 
-            self.state_name = "South Dakota"
-        when "TN" 
-            self.state_name = "Tennessee"
-        when "TX" 
-            self.state_name = "Texas"
-        when "UT" 
-            self.state_name = "Utah"
-        when "VT" 
-            self.state_name = "Vermont"
-        when "VI" 
-            self.state_name = "Virgin Islands"
-        when "VA" 
-            self.state_name = "Virginia"
-        when "WA" 
-            self.state_name = "Washington"
-        when "WV" 
-            self.state_name = "West Virginia"
-        when "WI" 
-            self.state_name = "Wisconsin"
-        when "WY" 
-            self.state_name = "Wyoming"               
-        end
+        self.state_name = STATE_ABBR_TO_NAME[self.state]  
     end
-    
+
+    STATE_ABBR_TO_NAME = {
+        'AL' => 'Alabama',
+        'AK' => 'Alaska',
+        'AS' => 'America Samoa',
+        'AZ' => 'Arizona',
+        'AR' => 'Arkansas',
+        'CA' => 'California',
+        'CO' => 'Colorado',
+        'CT' => 'Connecticut',
+        'DE' => 'Delaware',
+        'DC' => 'District of Columbia',
+        'FM' => 'Federated States Of Micronesia',
+        'FL' => 'Florida',
+        'GA' => 'Georgia',
+        'GU' => 'Guam',
+        'HI' => 'Hawaii',
+        'ID' => 'Idaho',
+        'IL' => 'Illinois',
+        'IN' => 'Indiana',
+        'IA' => 'Iowa',
+        'KS' => 'Kansas',
+        'KY' => 'Kentucky',
+        'LA' => 'Louisiana',
+        'ME' => 'Maine',
+        'MH' => 'Marshall Islands',
+        'MD' => 'Maryland',
+        'MA' => 'Massachusetts',
+        'MI' => 'Michigan',
+        'MN' => 'Minnesota',
+        'MS' => 'Mississippi',
+        'MO' => 'Missouri',
+        'MT' => 'Montana',
+        'NE' => 'Nebraska',
+        'NV' => 'Nevada',
+        'NH' => 'New Hampshire',
+        'NJ' => 'New Jersey',
+        'NM' => 'New Mexico',
+        'NY' => 'New York',
+        'NC' => 'North Carolina',
+        'ND' => 'North Dakota',
+        'OH' => 'Ohio',
+        'OK' => 'Oklahoma',
+        'OR' => 'Oregon',
+        'PW' => 'Palau',
+        'PA' => 'Pennsylvania',
+        'PR' => 'Puerto Rico',
+        'RI' => 'Rhode Island',
+        'SC' => 'South Carolina',
+        'SD' => 'South Dakota',
+        'TN' => 'Tennessee',
+        'TX' => 'Texas',
+        'UT' => 'Utah',
+        'VT' => 'Vermont',
+        'VI' => 'Virgin Island',
+        'VA' => 'Virginia',
+        'WA' => 'Washington',
+        'WV' => 'West Virginia',
+        'WI' => 'Wisconsin',
+        'WY' => 'Wyoming'
+      }
 end
