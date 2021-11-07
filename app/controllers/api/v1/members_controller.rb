@@ -3,7 +3,7 @@ module Api
         class MembersController < ApplicationController
 
             def index
-                CongressApi.new.get_members(117,'senate')
+                #CongressApi.new.get_members(117,'senate')
                 members = Member.all
                 render json: members
             end
