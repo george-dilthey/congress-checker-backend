@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_06_022407) do
+ActiveRecord::Schema.define(version: 2021_11_12_040844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 2021_11_06_022407) do
     t.string "state_name"
     t.string "member_id"
     t.integer "congress"
+    t.string "chamber"
   end
 
 end

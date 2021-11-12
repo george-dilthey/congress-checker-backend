@@ -59,6 +59,7 @@ class CongressApi
                 new_member.image_225x275 = "https://theunitedstates.io/images/congress/225x275/#{member["id"]}.jpg"
                 new_member.member_id = member["id"]
                 new_member.congress = congress
+                new_member.chamber = chamber
             end
         end
     end
