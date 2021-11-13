@@ -57,6 +57,7 @@ class CongressApi
                 new_member.votes_with_party_pct = member["votes_with_party_pct"]
                 new_member.votes_against_party_pct = member["votes_against_party_pct"]
                 new_member.image_225x275 = "https://theunitedstates.io/images/congress/225x275/#{member["id"]}.jpg"
+                new_member.image_450x550 = "https://theunitedstates.io/images/congress/450x550/#{member["id"]}.jpg"
                 new_member.member_id = member["id"]
                 new_member.congress = congress
                 new_member.chamber = chamber
