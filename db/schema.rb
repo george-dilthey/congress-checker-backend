@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2021_10_10_172149) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "members", primary_key: "member_id", force: :cascade do |t|
+  create_table "members", primary_key: "member_id", id: :string, force: :cascade do |t|
     t.string "first_name"
     t.string "middle_name"
     t.string "last_name"

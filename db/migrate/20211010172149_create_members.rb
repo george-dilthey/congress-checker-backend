@@ -1,6 +1,7 @@
 class CreateMembers < ActiveRecord::Migration[6.1]
   def change
-    create_table(:members, :primary_key => 'member_id') do |t|
+    create_table :members, {:id => false} do |t|
+      t.string :member_id
       t.string :first_name
       t.string :middle_name
       t.string :last_name
@@ -29,6 +30,7 @@ class CreateMembers < ActiveRecord::Migration[6.1]
     
       t.timestamps
     end
+    execute "ALTER TABLE members ADD PRIMARY KEY (member_id);"
   end
 end
 
