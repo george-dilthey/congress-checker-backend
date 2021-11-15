@@ -9,7 +9,7 @@ module Api
             end
 
             def show
-                member = Member.find_by(congress: params[:congress], member_id: params[:member_id])
+                member = Member.find_by(mid: params[:mid])
                 render json: member, serializer: MemberShowSerializer
             end
             

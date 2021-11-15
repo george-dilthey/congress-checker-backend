@@ -36,7 +36,7 @@ class CreateRoles < ActiveRecord::Migration[6.1]
       t.integer :votes_against_party_pct
       t.timestamps
     end
-    # rename_column :roles, :member_mid_id, :member_mid
+    
     add_foreign_key :roles, :members, column: 'member_mid', primary_key: 'mid'
   end
 end
