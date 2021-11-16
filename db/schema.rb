@@ -10,10 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_15_212546) do
+ActiveRecord::Schema.define(version: 2021_11_16_030035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bills", force: :cascade do |t|
+    t.string "member_mid", null: false
+    t.string "congress"
+    t.string "bill_id"
+    t.string "bill_type"
+    t.string "number"
+    t.string "bill_uri"
+    t.string "title"
+    t.string "short_title"
+    t.string "sponsor_title"
+    t.string "sponsor_id"
+    t.string "sponsor_name"
+    t.string "sponsor_state"
+    t.string "sponsor_party"
+    t.string "sponsor_uri"
+    t.string "gpo_pdf_uri"
+    t.string "congressdotgov_url"
+    t.string "govtrack_url"
+    t.string "introduced_date"
+    t.string "active"
+    t.string "last_vote"
+    t.string "house_passage"
+    t.string "senate_passage"
+    t.string "enacted"
+    t.string "vetoed"
+    t.integer "cosponsors"
+    t.string "cosponsors_by_party"
+    t.string "committees"
+    t.string "primary_subject"
+    t.string "summary"
+    t.string "summary_short"
+    t.string "latest_major_action_date"
+    t.string "latest_major_action"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "members", primary_key: "mid", id: :string, force: :cascade do |t|
     t.string "first_name"
@@ -84,5 +121,6 @@ ActiveRecord::Schema.define(version: 2021_11_15_212546) do
     t.string "state_name"
   end
 
+  add_foreign_key "bills", "members", column: "member_mid", primary_key: "mid"
   add_foreign_key "roles", "members", column: "member_mid", primary_key: "mid"
 end
