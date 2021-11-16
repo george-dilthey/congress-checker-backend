@@ -1,6 +1,6 @@
 class Role < ApplicationRecord
   belongs_to :member, foreign_key: 'member_mid'
-  default_scope { order(congress: :desc) }
+  default_scope { order('congress::integer DESC') }
 
   before_save :add_state_name
 
