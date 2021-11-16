@@ -4,4 +4,5 @@ class MemberShowSerializer < ActiveModel::Serializer
   end
 
   has_many :roles
+  has_many :bills
 end

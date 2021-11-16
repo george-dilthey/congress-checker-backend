@@ -1,3 +1,7 @@
 class BillSerializer < ActiveModel::Serializer
-  attributes :id
+  def attributes(*args)
+    object.attributes.symbolize_keys
+  end
+
+  belongs_to :member
 end

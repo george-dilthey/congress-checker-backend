@@ -9,6 +9,8 @@ class CongressApi
         result = HTTParty.get(uri, :headers => { 'content-type': 'application/json', 'X-API-Key': ENV['PROPUBLICA_API_KEY'] })
 
         members_arr = result['results'][0]['members']
+        #get_member(members_arr[0]['api_uri'])
+
         members_arr.map do |member|
             get_member(member['api_uri'])
         end
@@ -47,10 +49,11 @@ class CongressApi
             new_member.image_225x275 = "https://theunitedstates.io/images/congress/225x275/#{member["id"]}.jpg"
             new_member.image_450x550 = "https://theunitedstates.io/images/congress/450x550/#{member["id"]}.jpg"
         end
-        getRole(member["roles"], member["member_id"])
+        getRoles(member["roles"], member["member_id"])
+        getBills(member["member_id"])
     end
 
-    def getRole(roles, mid)
+    def getRoles(roles, mid)
         if roles
             roles.map do |role|
                 Role.find_or_create_by(member_mid: mid, congress: role['congress']) do |new_role|
@@ -97,44 +100,44 @@ class CongressApi
 
         result = HTTParty.get(uri, :headers => { 'content-type': 'application/json', 'X-API-Key': ENV['PROPUBLICA_API_KEY'] })
 
-        bills = result['results']['bills']
-            bils.map do |bill|
-                Role.find_or_create_by(member_mid: mid, bill_id: bill['bill_id']) do |new_role|
-                    new_role.member_mid = id
-                    new_role.congress = role["congress"]
-                    new_role.chamber = role["chamber"]
-                    new_role.title = role["title"]
-                    new_role.short_title = role["short_title"]
-                    new_role.state = role["state"]
-                    new_role.party = role["party"]
-                    new_role.leadership_role = role["leadership_role"]
-                    new_role.fec_candidate_id = role["fec_candidate_id"]
-                    new_role.seniority = role["seniority"]
-                    new_role.district = role["district"]
-                    new_role.ocd_id = role["ocd_id"]
-                    new_role.start_date = role["start_date"]
-                    new_role.end_date = role["end_date"]
-                    new_role.office = role["office"]
-                    new_role.phone = role["phone"]
-                    new_role.fax = role["fax"]
-                    new_role.contact_form = role["contact_form"]
-                    new_role.cook_pvi = role["cook_pvi"]
-                    new_role.dw_nominate = role["dw_nominate"]
-                    new_role.ideal_point = role["ideal_point"]
-                    new_role.next_election = role["next_election"]
-                    new_role.total_votes = role["total_votes"]
-                    new_role.missed_votes = role["missed_votes"]
-                    new_role.total_present = role["total_present"]
-                    new_role.senate_class = role["senate_class"]
-                    new_role.state_rank = role["state_rank"]
-                    new_role.lis_id = role["lis_id"]
-                    new_role.bills_sponsored = role["bills_sponsored"]
-                    new_role.bills_cosponsored = role["bills_cosponsored"]
-                    new_role.missed_votes_pct = role["missed_votes_pct"]
-                    new_role.votes_with_party_pct = role["votes_with_party_pct"]
-                    new_role.votes_against_party_pct = role["votes_against_party_pct"]
-                end
-            end 
-        end   
+        bills = result['results'][0]['bills']
+        bills.map do |bill|
+            Bill.find_or_create_by(bill_id: bill['bill_id']) do |new_bill|
+                new_bill.member_mid = mid
+                new_bill.congress = bill["congress"]
+                new_bill.bill_id = bill["bill_id"]
+                new_bill.bill_type = bill["bill_type"]
+                new_bill.number = bill["number"]
+                new_bill.bill_uri = bill["bill_uri"]
+                new_bill.title = bill["title"]
+                new_bill.short_title = bill["short_title"]
+                new_bill.sponsor_title = bill["sponsor_title"]
+                new_bill.sponsor_id = bill["sponsor_id"]
+                new_bill.sponsor_name = bill["sponsor_name"]
+                new_bill.sponsor_state = bill["sponsor_state"]
+                new_bill.sponsor_party = bill["sponsor_party"]
+                new_bill.sponsor_uri = bill["sponsor_uri"]
+                new_bill.gpo_pdf_uri = bill["gpo_pdf_uri"]
+                new_bill.congressdotgov_url = bill["congressdotgov_url"]
+                new_bill.govtrack_url = bill["govtrack_url"]
+                new_bill.introduced_date = bill["introduced_date"]
+                new_bill.active = bill["active"]
+                new_bill.last_vote = bill["last_vote"]
+                new_bill.house_passage = bill["house_passage"]
+                new_bill.senate_passage = bill["senate_passage"]
+                new_bill.enacted = bill["enacted"]
+                new_bill.vetoed = bill["vetoed"]
+                new_bill.cosponsors = bill["cosponsors"]
+                new_bill.cosponsors_by_party = bill["cosponsors_by_party"]
+                new_bill.committees = bill["committees"]
+                new_bill.primary_subject = bill["primary_subject"]
+                new_bill.summary = bill["summary"]
+                new_bill.summary_short = bill["summary_short"]
+                new_bill.latest_major_action_date = bill["latest_major_action_date"]
+                new_bill.latest_major_action = bill["latest_major_action"]
+            end
+        end 
+           
     end
 end
+
