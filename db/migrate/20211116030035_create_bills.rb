@@ -1,6 +1,6 @@
 class CreateBills < ActiveRecord::Migration[6.1]
   def change
-    create_table :bills do |t|
+    create_table :bills, id: false, primary_key: :bill_id do |t|
       t.string :member_mid, references: :members, null: false
       t.string :congress
       t.string :bill_id
@@ -37,6 +37,7 @@ class CreateBills < ActiveRecord::Migration[6.1]
       t.timestamps
     end
     add_foreign_key :bills, :members, column: 'member_mid', primary_key: 'mid'
+    execute "ALTER TABLE bills ADD PRIMARY KEY (bill_id);"
 
   end
 end
