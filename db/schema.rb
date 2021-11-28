@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_23_230005) do
+ActiveRecord::Schema.define(version: 2021_11_28_230320) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,21 @@ ActiveRecord::Schema.define(version: 2021_11_23_230005) do
     t.string "latest_major_action"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "checklist_members", force: :cascade do |t|
+    t.bigint "checklist_id", null: false
+    t.string "member_mid"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["checklist_id"], name: "index_checklist_members_on_checklist_id"
+  end
+
+  create_table "checklists", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_checklists_on_user_id"
   end
 
   create_table "members", primary_key: "mid", id: :string, force: :cascade do |t|
@@ -130,5 +145,7 @@ ActiveRecord::Schema.define(version: 2021_11_23_230005) do
   end
 
   add_foreign_key "bills", "members", column: "member_mid", primary_key: "mid"
+  add_foreign_key "checklist_members", "checklists"
+  add_foreign_key "checklists", "users"
   add_foreign_key "roles", "members", column: "member_mid", primary_key: "mid"
 end
