@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :checklists
   resources :users, only: [:create]
   resources :sessions, only: [:create]
   get "/me", to: 'sessions#autoLogin'
@@ -9,6 +8,8 @@ Rails.application.routes.draw do
       resources :members, param: :mid
       resources :roles
       resources :bills
+      resources :checklists
+
     end
   end
 end
