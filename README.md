@@ -1,24 +1,10 @@
-# README
+# Congress Checker
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project was created as a final project for the Flatiron Software Engineering bootcamp. View a video demonstration below!
 
-Things you may want to cover:
+https://www.loom.com/share/a1eb168ec59345d98d4bc92748bae874?sharedAppSource=personal_library
 
-* Ruby version
 
-* System dependencies
+## Frontend
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+https://github.com/george-dilthey/congress-checker-frontend
